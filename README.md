@@ -128,7 +128,7 @@ Streamlit is an open-source Python framework for machine learning and data scien
 
 #### Streamli webapp Results
 
-![](https://github.com/PriyaVellanki/flower_classification/issues/1#issuecomment-19034274739.png)
+<img width="1000" alt="Screenshot 2024-01-21 at 11 16 12 PM" src="https://github.com/PriyaVellanki/flower_classification/assets/36514922/d90628ab-b427-40dc-88e8-191e957e3923">
 
 
 
