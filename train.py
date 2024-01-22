@@ -1,14 +1,11 @@
 
 import numpy as np
-import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing.image import load_img
+from tensorflow.keras.applications.mobilenet import MobileNet
 import PIL
-import cv2
-from tqdm import tqdm
-from sklearn.model_selection import train_test_split
 import os
 import shutil
 
@@ -35,15 +32,7 @@ scores = {}
 
 filepath = './mobilent_v2_{epoch:02d}_{val_accuracy:.3f}.h5'
     
-  
-checkpoint = keras.callbacks.ModelCheckpoint(filepath=filepath,
-                                             save_best_only=True,
-                                             monitor='val_accuracy',
-                                             mode='max')
 
-model = mobilenet_model(learning_rate=learning_rate, size=layer_size,drop_rate=drop_rate)
-history = model.fit(train_dataset, epochs=10, validation_data=validation_dataset,callbacks=[checkpoint])
-scores[layer_size] = history.history
 
 def get_data():
     
@@ -56,7 +45,7 @@ def get_data():
     os.system("unzip ./images/dandelion.zip -d ./images/")
     shutil.rmtree("./images/__MACOSX",ignore_errors=True)
 
-def def_model():
+def get_model():
     base_model=MobileNet(input_shape=(160, 160, 3),
                      weights='imagenet',
                      include_top=False
@@ -76,9 +65,13 @@ def def_model():
 
 
 def mobilenet_model(learning_rate=0.01,size=1024,drop_rate=0.2):
-    base_model = def_model()
-    
-    #########################################
+
+    base_model=MobileNet(input_shape=(160, 160, 3),
+                     weights='imagenet',
+                     include_top=False
+                    )
+    base_model.trainable = False
+
 
     inputs = keras.Input(shape=(160, 160, 3))
     base = base_model(inputs, training=False)
@@ -104,5 +97,14 @@ def mobilenet_model(learning_rate=0.01,size=1024,drop_rate=0.2):
 
 
 if __name__ == '__main__':
-    get_data()    
+    get_data() 
+    mobilenet_model(learning_rate=0.01,size=1024,drop_rate=0.2)   
+
+    checkpoint = keras.callbacks.ModelCheckpoint(filepath=filepath,
+                                             save_best_only=True,
+                                             monitor='val_accuracy',
+                                             mode='max')
+
+    model = mobilenet_model(learning_rate=learning_rate, size=layer_size,drop_rate=drop_rate)
+    history = model.fit(train_dataset, epochs=10, validation_data=validation_dataset,callbacks=[checkpoint])
 
