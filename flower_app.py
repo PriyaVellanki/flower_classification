@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-import tflite_runtime.interpreter as tflite
+import tensorflow.lite as tflite
 import urllib.request
 from io import BytesIO
 from PIL import Image
