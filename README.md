@@ -126,7 +126,6 @@ Streamlit is an open-source Python framework for machine learning and data scien
 
 ```
 
-
 ![](https://github.com/PriyaVellanki/flower_classification/issues/1#issuecomment-1903427473)
 
 
