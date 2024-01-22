@@ -9,33 +9,24 @@ import PIL
 import os
 import shutil
 
-IMAGE_DIR = 'images'
+###Images Folder
 
-image_generator = ImageDataGenerator(validation_split=0.2)  
+IMAGE_DIR = './images'
 
-train_dataset = image_generator.flow_from_directory(batch_size=32,
-                                                 directory='./images',
-                                                 target_size=(160, 160), 
-                                                 subset="training",
-                                                 class_mode='categorical')
-
-validation_dataset = image_generator.flow_from_directory(batch_size=32,
-                                                 directory='./images',
-                                                 target_size=(160, 160), 
-                                                 subset="validation",
-                                                 class_mode='categorical')
+###Trained Params Values
 
 learning_rate = 0.01
 layer_size = 256
 drop_rate = 0.2
 scores = {}
 
-filepath = './mobilent_v2_{epoch:02d}_{val_accuracy:.3f}.h5'
+filepath = './mobilnet_v2_{epoch:02d}_{val_accuracy:.3f}.h5'
     
-
+"""
+Get Image data from git
+"""
 
 def get_data():
-    
 
     os.system("rm -rf ./images")
     os.mkdir(IMAGE_DIR)
@@ -98,6 +89,20 @@ def mobilenet_model(learning_rate=0.01,size=1024,drop_rate=0.2):
 
 if __name__ == '__main__':
     get_data() 
+
+    image_generator = ImageDataGenerator(validation_split=0.2)  
+
+    train_dataset = image_generator.flow_from_directory(batch_size=32,
+                                                    directory='./images',
+                                                    target_size=(160, 160), 
+                                                    subset="training",
+                                                    class_mode='categorical')
+
+    validation_dataset = image_generator.flow_from_directory(batch_size=32,
+                                                    directory='./images',
+                                                    target_size=(160, 160), 
+                                                    subset="validation",
+                                                    class_mode='categorical')
     mobilenet_model(learning_rate=0.01,size=1024,drop_rate=0.2)   
 
     checkpoint = keras.callbacks.ModelCheckpoint(filepath=filepath,
