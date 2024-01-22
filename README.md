@@ -68,17 +68,25 @@ GPU is needed to run the notebook. One can run on Google Collab and any other pl
 7.In another window, run the test_api.py
 ```
 You should see the result similar to below:
-
+```python
+(flower_classification) (base) kishore@Kishores-MacBook-Air flower_classification % python3 test.py
+{'daisy': 0.9988583326339722, 'dandelion': -4.313272953033447}
+```
 
 #### How to run app locally with Docker
 
-```python
-1.cd flower_classification/serverless
-2.docker build --platform linux/amd64 -t flower-classifcation:v1 . 
-3.docker run --platform linux/amd64 --rm -p 9000:8080 flower-classifcation:v1
-4.Make sure docker is running. You can check docker status by running docker ps.
-5.Run the python3 test_docker_local.py or curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"url":"https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg"}'
 
+* Change to serverless directory. ```cd flower_classification/serverless```
+* ```docker build --platform linux/amd64 -t flower-classifcation:v1 . ```
+* ```docker run --platform linux/amd64 --rm -p 9000:8080 flower-classifcation:v1```
+* Make sure docker is running. You can check docker status by running ```docker ps```.
+* Run the ```python3 test_docker_local.py``` or ```curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"url":"https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg"}' ```
+
+
+
+```python
+(flower_classification) (base) kishore@Kishores-MacBook-Air flower_classification % curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"url":"https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg"}'
+{"daisy": 0.9988558292388916, "dandelion": -4.313270568847656}
 ```
 
 #### Cloud Deployment
@@ -89,13 +97,13 @@ AWS Lambda Setup Instructions:
 
 Instructions Link : https://docs.aws.amazon.com/lambda/latest/dg/python-image.html#python-image-instructions
 
-Build, tag and run docker container image : docker tag flower_classification:latest ${REMOTE_URI} 
-Login to AWS ECR: aws ecr get-login-password | docker login --username AWS --password-stdin <account_url>
-Create AWS elastic container registry (ECR) repository to store the image : aws ecr create-repository --repository-name <repo_name>
-Publish docker container image to ECR repository as tagged image : docker push ${REMOTE_URI}
-Create, configure and test AWS Lambda function
-Create, configure and test AWS Rest API Gateway to access Lambda function
-Make prediction using POST METHOD /predict
+* Build, tag and run docker container image : ```docker tag flower_classification:latest ${REMOTE_URI} ```
+* Login to AWS ECR: ```aws ecr get-login-password | docker login --username AWS --password-stdin <account_url>```
+* Create AWS elastic container registry (ECR) repository to store the image : ```aws ecr create-repository --repository-name <repo_name>```
+* Publish docker container image to ECR repository as tagged image : ```docker push ${REMOTE_URI}```
+* Create, configure and test AWS Lambda function
+* Create, configure and test AWS Rest API Gateway to access Lambda function
+* Make prediction using POST METHOD /predict
 
 Run the following command to test : 
 ```python
@@ -119,12 +127,14 @@ App url : https://flowerclassification-daisyordandelion.streamlit.app/
 ##### How to Use/Test:
 Streamlit is an open-source Python framework for machine learning and data science teams.
 
-```python
-1.Open the App url in the browser: https://flowerclassification-daisyordandelion.streamlit.app/
-2.Download the test data from https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg and upload image in the web app
-3. Click on Predict to see the result
 
-```
+* Open the App url in the browser: ```https://flowerclassification-daisyordandelion.streamlit.app/```
+
+* Download the test data from ```https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg ``` and upload image in the web app
+
+* Click on Predict to see the result
+
+
 
 #### Streamli webapp Results
 
