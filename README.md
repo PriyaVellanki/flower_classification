@@ -124,6 +124,7 @@ Streamlit is an open-source Python framework for machine learning and data scien
 2.Download the test data from https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg and upload image in the web app
 3. Click on Predict to see the result
 ```
+![](https://github.com/PriyaVellanki/flower_classification/issues/1#issuecomment-1903427473)
 
 
 
