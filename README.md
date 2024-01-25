@@ -69,17 +69,17 @@ GPU is needed to run the notebook. One can run on `Google Collab` and any other 
 ### How to run app locally (without Docker and with Flask)
 
 - Clone the repo
-- pipenv install
-- pipenv shell
-- pip install --extra-index-url https://google-coral.github.io/py-repo/  tflite_runtime
-- cd app/ ( This is needed to make sure model is accessed from the right directory for local testing)
-6. Run `python3 app/predict.py`
-7. In another window, run the `python3 test_api.py`
+- `pipenv install`
+- `pipenv shell`
+- `pip install --extra-index-url https://google-coral.github.io/py-repo/  tflite_runtime`
+- `cd app/` ( This is needed to make sure model is accessed from the right directory for local testing)
+- Run `python3 app/predict.py`
+- In another window, run the `python3 test_api.py`
 
 You should see the result similar to below:
 ```python
-python3 test.py
-{'daisy': 0.9988583326339722, 'dandelion': -4.313272953033447}
+(flower_classification) (base) XXXX-MacBook-Air app % python3 test_api.py
+{'daisy': 0.9988572001457214, 'dandelion': -4.313272953033447}
 ```
 
 ### How to run app locally (with Docker)
