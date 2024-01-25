@@ -31,6 +31,13 @@ User Friendly Interface:
 
 ## How to use
 
+### Prerequisites
+
+```
+Python 3.8
+Docker
+```
+
 ### Clone the repo
 ```
 git clone https://github.com/PriyaVellanki/flower_classification.git
@@ -47,7 +54,7 @@ git clone https://github.com/PriyaVellanki/flower_classification.git
 
 ```
 pip install pipenv
-pipenv --python 3.7
+pipenv --python 3.8
 pipenv install 
 pipenv shell
 
@@ -61,13 +68,13 @@ GPU is needed to run the notebook. One can run on `Google Collab` and any other 
 
 ### How to run app locally (without Docker and with Flask)
 
-1. Clone the repo
-2. pipenv install
-3. pipenv shell
-4. pip install --extra-index-url https://google-coral.github.io/py-repo/ tflite_runtime
-5. cd app/
-6. Run python3 app/predict.py  
-7. In another window, run the test_api.py
+- Clone the repo
+- pipenv install
+- pipenv shell
+- pip install --extra-index-url https://google-coral.github.io/py-repo/  tflite_runtime
+- cd app/ ( This is needed to make sure model is accessed from the right directory for local testing)
+6. Run `python3 app/predict.py`
+7. In another window, run the `python3 test_api.py`
 
 You should see the result similar to below:
 ```python
@@ -116,6 +123,8 @@ curl 'https://ivw7r2k600.execute-api.us-west-1.amazonaws.com/stage/predict' -d '
 Expected output:
 
 <img width="1440" alt="Screenshot 2024-01-24 at 8 09 50 PM" src="https://github.com/PriyaVellanki/flower_classification/assets/36514922/e1116dc4-3ed8-4eb2-a7db-87e692bfc8cd">
+
+<img width="1400" alt="Screenshot 2024-01-24 at 11 49 44 PM" src="https://github.com/PriyaVellanki/flower_classification/assets/36514922/e05acd0b-aae1-4518-959c-79078b858813">
 
 ### Streamlit Cloud
 App url : https://flowerclassification-daisyordandelion.streamlit.app/
