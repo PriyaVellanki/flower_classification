@@ -29,13 +29,13 @@ Cloud Deployment:
 User Friendly Interface: 
 - Web interface deployed as `streamlit` web app.
 
-### How to use
+## How to use
 
-#### Clone the repo
+### Clone the repo
 ```
 git clone https://github.com/PriyaVellanki/flower_classification.git
 ```
-#### Repository structure (description)
+### Repository structure (description)
 
 - flower_classification (root)
     - app (Flask API service)
@@ -43,7 +43,7 @@ git clone https://github.com/PriyaVellanki/flower_classification.git
     - model (final model)
     - data (Jupyter Notebook files and env files)
 
-#### Setup local environment
+### Setup local environment
 
 ```
 pip install pipenv
@@ -55,11 +55,11 @@ pipenv shell
 pip install --extra-index-url https://google-coral.github.io/py-repo/ tflite_runtime
 ```
 
-#### Running the train notebook
+### Running the train notebook
 
 GPU is needed to run the notebook. One can run on `Google Collab` and any other platform which supports GPU. It does save models multiple models from `Mobilenet` and `Xcpetion`. Make sure to delete unwanted files to make sure disk is not getting full.
 
-#### How to run app locally (without Docker and with Flask)
+### How to run app locally (without Docker and with Flask)
 
 1. Clone the repo
 2. pipenv install
@@ -75,7 +75,7 @@ python3 test.py
 {'daisy': 0.9988583326339722, 'dandelion': -4.313272953033447}
 ```
 
-#### How to run app locally (with Docker)
+### How to run app locally (with Docker)
 
 - Change to serverless directory. `cd flower_classification/serverless`
 - `docker build --platform linux/amd64 -t flower-classifcation:v1 .`
@@ -90,10 +90,10 @@ flower_classification % curl "http://localhost:9000/2015-03-31/functions/functio
 {"daisy": 0.9988558292388916, "dandelion": -4.313270568847656}
 ```
 
-### Cloud deployment
+## Cloud deployment
 Hosted on `AWS Lambda` and `Streamlit` Cloud 
 
-#### AWS Lamda
+### AWS Lamda
 
 AWS Lambda Setup Instructions:
 Official instructions for reference: https://docs.aws.amazon.com/lambda/latest/dg/python-image.html#python-image-instructions
@@ -113,14 +113,11 @@ curl 'https://ivw7r2k600.execute-api.us-west-1.amazonaws.com/stage/predict' -d '
 
 ```
 
-Expected test result:
+Expected output:
 
-```
-app % curl 'https://ivw7r2k600.execute-api.us-west-1.amazonaws.com/stage/predict' -d '{"url":"https://github.com/PriyaVellanki/flower_classification/raw/main/data/11124324295_503f3a0804.jpg"}' 
-{"daisy": 0.9988583326339722, "dandelion": -4.313272953033447}
-```
+<img width="1440" alt="Screenshot 2024-01-24 at 8 09 50 PM" src="https://github.com/PriyaVellanki/flower_classification/assets/36514922/e1116dc4-3ed8-4eb2-a7db-87e692bfc8cd">
 
-#### Streamlit Cloud
+### Streamlit Cloud
 App url : https://flowerclassification-daisyordandelion.streamlit.app/
 
 `Streamlit` is an open-source Python framework for machine learning and data science teams.
